@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
 	<title>Technomart</title>
-	<link href="https://fonts.googleapis.com/css?family=Cuprum:400,400i,700|PT+Sans:400,700&amp;subset=cyrillic" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cuprum:400,400i,700|PT+Sans+Narrow|PT+Sans:400,700&amp;subset=cyrillic" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -12,7 +13,11 @@
 			<a class="logo" href="#">Техномарт</a>
 			<nav class="header-top-nav">
 				<ul class="header-top-list">
-					<li class="header-top-item"><a href="#">Поиск:</a></li>
+					<li class="header-top-item">
+						<form class="header-find-form" action="#" method="post">
+							<label><input type="text" placeholder="Поиск:"></label>
+						</form>
+					</li>
 					<li class="header-top-item"><a href="#">Закладки: 0</a></li>
 					<li class="header-top-item"><a href="#">Корзина: 0</a></li>
 					<li class="header-top-item"><a href="#" class="order">Оформить заказ</a></li>
@@ -24,7 +29,7 @@
 		<div class="conteiner">
 			<p class="shop-name">Интернет-магазин <br> строительных материалов <br> и инструментов для ремонта</p>
 			<div class="contacts">
-				<b class="phone-number">+7 (812) 555-05-55</b>
+				<span class="phone-number">+7 (812) 555-05-55</span>
 				<p class="shop-adress">г. Санкт-Петербург, ул. Б. Конюшенная, д. 19/8</p>
 			</div>
 			<a class="login" href="#">Войти</a>
@@ -40,7 +45,7 @@
 			</ul>
 		</div>
 	</header>
-	<section class="product-cards">
+	<section class="product-cards conteiner">
 		<h2 class="visually-hidden">Категории товаров</h2>
 		<ul class="product-cards-list">
 			<li class="product-cards-item">
@@ -48,7 +53,7 @@
 				<a href="#">На любой вкус</a>
 			</li>
 			<li class="product-cards-item">
-				<h3>Инструменты</h3>
+				<h3>Инструмент</h3>
 				<a href="#">На все случаи</a>
 			</li>
 			<li class="product-cards-item">
@@ -56,21 +61,28 @@
 				<a href="#">Для стройки</a>
 			</li>
 			<li class="product-cards-slider">
-				<div class="slider-one-description">
-					<h3>Дрели</h3>
-					<p>Соседям на радость!</p>
-				</div>
-				<div class="slider-one-description">
+				<div class="slider-description slide-one">
 					<h3>Перфораторы</h3>
 					<p>Настоящие мужские игрушки</p>
 				</div>
+					<a href="#" class="catalog-open-btn">Открыть каталог</a>
+					<div class="slider-radio-wrap">
+						<label class="slider-radio-label"><input type="radio" name="slider-radio" checked><span class="radio-indificator" tabindex="0"></span></label>
+						<label class="slider-radio-label"><input type="radio" name="slider-radio"><span class="radio-indificator" tabindex="0"></span></label>
+					</div>
+					<button class="slider-arrow slider-next">Следующий</button>
+					<button class="slider-arrow slider-prev">Предыдущий</button>
+				<div class="slider-description slide-two">
+					<h3>Дрели</h3>
+					<p>Соседям на радость!</p>
+				</div>
 			</li>
 			<li class="product-cards-item-wrap">
-				<div class="product-cards-item">
+				<div class="product-cards-item product-cards-another">
 					<h3>Скидки 50%</h3>
 					<a href="#">На 350 товаров</a>
 				</div>
-				<div class="product-cards-item">
+				<div class="product-cards-item product-cards-another">
 					<h3>Доставка</h3>
 					<a href="#">Бесплатно</a>
 				</div>
