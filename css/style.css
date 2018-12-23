@@ -771,12 +771,16 @@ input[name="slider-radio"]:checked + .radio-indificator:after {
 }
 
 .popular-product-item:hover .popular-product-buy,
-.popular-product-item:hover .popular-product-bookmarks {
+.popular-product-item:hover .popular-product-bookmarks,
+.popular-product-item:focus .popular-product-buy,
+.popular-product-item:focus .popular-product-bookmarks {
 	display: block;
 }
 
 .popular-product-item:hover img,
-.popular-product-item:hover img {
+.popular-product-item:hover img,
+.popular-product-item:focus img,
+.popular-product-item:focus img  {
 	display: none;
 }
 
