@@ -269,18 +269,20 @@
 		</div>
 	</footer>
 	<div class="write-us-popup">
-		<form action="#" method="post">
-			<label>Ваше имя:
-				<input type="text" placeholder="Представтесь пожалуйста">
-			</label>
-			<label>Ваше e-mail:
-				<input type="text" placeholder="Для отправки ответа">
-			</label>
-			<label>Текст письма:
-				<input type="text" placeholder="В свободной форме">
-			</label>
-			<button type="submit">Отправить</button>
-		</form>
+			<form action="#" method="post" class="write-us-form">
+			<div class="form-overlay">
+				<label class="write-us-label">Ваше имя:
+					<input type="text" placeholder="Представтесь пожалуйста">
+				</label>
+				<label class="write-us-label">Ваше e-mail:
+					<input type="text" placeholder="Для отправки ответа">
+				</label>
+				<label class="write-us-label">Текст письма:
+					<input type="text" placeholder="В свободной форме">
+				</label>
+			</div>
+				<button type="submit" class="write-us-button">Отправить</button>
+			</form>
 		<button class="write-us-close">Закрыть</button>
 	</div>
 	<div class="map-popap">
@@ -297,10 +299,14 @@
 		var sliderNext = document.querySelector(".slider-next");
 		var sliderPrev = document.querySelector(".slider-prev");
 		var serviceNav = document.querySelector(".service-nav");
+		var popularProduct = document.querySelector(".popular-product-item");
+		var popularProductBuy = document.querySelector(".popular-product-buy");
+		var popularProductBookmarks = document.querySelector(".popular-product-bookmarks");
 		var deliveryLabel = document.querySelector(".delivery");
 		var warrantyLabel = document.querySelector(".warranty");
 		var creditLabel = document.querySelector(".credit");
 
+		// Slider 
 		sliderRadioWrap.addEventListener("click", function() {
 			if (document.querySelector("#slider-input-one:checked")) {
 				slideTwo.style.display = "none";
@@ -311,6 +317,7 @@
 			}
 		})
 
+		// Service 
 		serviceNav.addEventListener("click", function() {
 			if (document.querySelector("#delivery-input:checked")) {
 				warrantyLabel.style.display = "none";
@@ -327,30 +334,30 @@
 			}
 		})
 
+		// Yandex API
 		ymaps.ready(init);
-    function init(){ 
-        // Создание карты.    
-        var myMap = new ymaps.Map("map", {
-            center: [59.93903,30.3233],
-            zoom: 16,
-            controls: [],
-            behaviors: ['drag']
-        },
-        {
-        	suppressMapOpenBlock: true
-        });
+	    function init(){   
+	        var myMap = new ymaps.Map("map", {
+	            center: [59.93903,30.3233],
+	            zoom: 16,
+	            controls: [],
+	            behaviors: ['drag']
+	        },
+	        {
+	        	suppressMapOpenBlock: true
+	        });
 
-    var placemark = new ymaps.Placemark([59.93880,30.3228], {
-        	hintContent: 'ул. Большая Конюшенная 19, Санкт-Петербург',
-        	iconContent: '<div class="map-hint">Большая</br>конюшенная ул., 19</div>'
-        },
-        {
-        	preset: 'islands#redIcon'
-        });
+	    var placemark = new ymaps.Placemark([59.93880,30.3228], {
+	        	hintContent: 'ул. Большая Конюшенная 19, Санкт-Петербург',
+	        	iconContent: '<div class="map-hint">Большая</br>конюшенная ул., 19</div>'
+	        },
+	        {
+	        	preset: 'islands#redIcon'
+	        });
 
-        myMap.geoObjects.add(placemark);
+	        myMap.geoObjects.add(placemark);
 
-    }
+	    }
 	</script>
 </body>
 </html>
