@@ -268,6 +268,7 @@
 			<p class="developed">Разработано — <a href="#">htmlacademy.ru</a></p>
 		</div>
 	</footer>
+	<div class="write-us-overlay"></div>
 	<div class="write-us-popup">
 			<form action="#" method="post" class="write-us-form">
 			<div class="form-overlay">
@@ -305,6 +306,10 @@
 		var deliveryLabel = document.querySelector(".delivery");
 		var warrantyLabel = document.querySelector(".warranty");
 		var creditLabel = document.querySelector(".credit");
+		var companyMessage = document.querySelector(".company-message");
+		var writeUsPopup = document.querySelector(".write-us-popup");
+		var writeUsClose = document.querySelector(".write-us-close");
+		var writeUsOverlay = document.querySelector(".write-us-overlay");
 
 		// Slider 
 		sliderRadioWrap.addEventListener("click", function() {
@@ -333,6 +338,28 @@
 				creditLabel.style.display = "block";
 			}
 		})
+
+		// Message popup
+		companyMessage.addEventListener("click", function(e) {
+			e.preventDefault();
+			writeUsPopup.style.display='block';
+			writeUsOverlay.style.display='block';
+		})
+
+		writeUsClose.addEventListener("click", function(e) {
+			e.preventDefault();
+			writeUsPopup.style.display='none';
+			writeUsOverlay.style.display='none';
+		})
+
+		function hidePopup(e) {
+		    if(!e.target.matches('.write-us-popup, .write-us-popup *')) {
+				writeUsPopup.style.display='none';
+				writeUsOverlay.style.display='none';
+		    }
+		};
+
+		window.addEventListener("click", hidePopup);
 
 		// Yandex API
 		ymaps.ready(init);
