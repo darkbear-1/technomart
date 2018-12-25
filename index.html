@@ -65,7 +65,7 @@
 					<h3>Перфораторы</h3>
 					<p>Настоящие мужские игрушки</p>
 				</div>
-					<a href="#" class="catalog-open-btn">Открыть каталог</a>
+					<a href="catalog.html" class="catalog-open-btn">Открыть каталог</a>
 					<div class="slider-radio-wrap">
 						<label><span class="slider-radio-label-next"></span><input id="slider-input-one" type="radio" name="slider-radio" checked><span class="radio-indificator" tabindex="0"><span class="radio-indificator-current "></span></span></label>
 						<label><span class="slider-radio-label-prev"></span><input id="slider-input-two" type="radio" name="slider-radio"><span class="radio-indificator" tabindex="0"><span class="radio-indificator-current radio-current-show"></span></span></label>
@@ -90,7 +90,7 @@
 	<section class="popular-product conteiner">
 		<div class="popular-product-title">
 			<h2>Популярные товары</h2>
-			<a class="popular-product-link" href="#">Все популярные товары</a>
+			<a href="#">Все популярные товары</a>
 		</div>
 		<ul class="popular-product-list">
 			<li class="popular-product-item" tabindex="0">
@@ -169,15 +169,15 @@
 			<ul class="service-nav">
 				<li class="service-item">
 					<input type="radio" id="delivery-input" name='service-radio' checked="checked">
-					<label class="delivery-label" for="delivery-input">Доставка</label>
+					<label tabindex="0" class="delivery-label label-current" for="delivery-input">Доставка</label>
 				</li>
 				<li class="service-item">
 					<input type="radio" id="warranty-input" name='service-radio'>
-					<label class="warranty-label" for="warranty-input">Гарантия</label>
+					<label tabindex="0" class="warranty-label" for="warranty-input">Гарантия</label>
 				</li>
 				<li class="service-item">
 					<input type="radio" id="credit-input" name='service-radio'>
-					<label class="credit-label" for="credit-input">Кредит</label>
+					<label tabindex="0" class="credit-label" for="credit-input">Кредит</label>
 				</li>
 			</ul>
 			<div class="delivery">
@@ -302,10 +302,11 @@
 		var slideTwo = document.querySelector(".slide-two");
 		var sliderNext = document.querySelector(".slider-next");
 		var sliderPrev = document.querySelector(".slider-prev");
-		var serviceNav = document.querySelector(".service-nav");
-		var popularProduct = document.querySelector(".popular-product-item");
-		var popularProductBuy = document.querySelector(".popular-product-buy");
-		var popularProductBookmarks = document.querySelector(".popular-product-bookmarks");
+		var serviceNavLabel = document.querySelectorAll(".service-nav label");
+		var popularProduct = document.querySelectorAll(".popular-product-item");
+		var popularProductImage = document.querySelectorAll(".popular-product-item img");
+		var popularProductBuy = document.querySelectorAll(".popular-product-buy");
+		var popularProductBookmarks = document.querySelectorAll(".popular-product-bookmarks");
 		var deliveryLabel = document.querySelector(".delivery");
 		var warrantyLabel = document.querySelector(".warranty");
 		var creditLabel = document.querySelector(".credit");
@@ -362,20 +363,150 @@
 		})
 
 		// Service 
-		serviceNav.addEventListener("click", function() {
-			if (document.querySelector("#delivery-input:checked")) {
+		serviceNavLabel[0].addEventListener("click", function() {
+				serviceNavLabel[0].classList.add('label-current');
+				serviceNavLabel[1].classList.remove('label-current');
+				serviceNavLabel[2].classList.remove('label-current');
 				warrantyLabel.style.display = "none";
 				creditLabel.style.display = "none";
 				deliveryLabel.style.display = "block";
-			} else if (document.querySelector("#warranty-input:checked")) {
-				deliveryLabel.style.display = "none";
-				creditLabel.style.display = "none";
+		})
+
+		serviceNavLabel[1].addEventListener("click", function() {
+				serviceNavLabel[1].classList.add('label-current');
+				serviceNavLabel[0].classList.remove('label-current');
+				serviceNavLabel[2].classList.remove('label-current');
 				warrantyLabel.style.display = "block";
-			} else {
+				creditLabel.style.display = "none";
 				deliveryLabel.style.display = "none";
+		})
+
+		serviceNavLabel[2].addEventListener("click", function() {
+				serviceNavLabel[2].classList.add('label-current');
+				serviceNavLabel[0].classList.remove('label-current');
+				serviceNavLabel[1].classList.remove('label-current');
 				warrantyLabel.style.display = "none";
 				creditLabel.style.display = "block";
-			}
+				deliveryLabel.style.display = "none";
+		})
+
+		serviceNavLabel[0].addEventListener("focus", function() {
+				serviceNavLabel[0].classList.add('label-current');
+				serviceNavLabel[1].classList.remove('label-current');
+				serviceNavLabel[2].classList.remove('label-current');
+				warrantyLabel.style.display = "none";
+				creditLabel.style.display = "none";
+				deliveryLabel.style.display = "block";
+		})
+
+		serviceNavLabel[1].addEventListener("focus", function() {
+				serviceNavLabel[1].classList.add('label-current');
+				serviceNavLabel[0].classList.remove('label-current');
+				serviceNavLabel[2].classList.remove('label-current');
+				warrantyLabel.style.display = "block";
+				creditLabel.style.display = "none";
+				deliveryLabel.style.display = "none";
+		})
+
+		serviceNavLabel[2].addEventListener("focus", function() {
+				serviceNavLabel[2].classList.add('label-current');
+				serviceNavLabel[0].classList.remove('label-current');
+				serviceNavLabel[1].classList.remove('label-current');
+				warrantyLabel.style.display = "none";
+				creditLabel.style.display = "block";
+				deliveryLabel.style.display = "none";
+		})
+
+		// Popular product focus
+
+		popularProduct[0].addEventListener("focus", function() {
+			popularProductBuy[0].classList.add("popular-product-link");
+			popularProductBookmarks[0].classList.add("popular-product-link");
+			popularProductBuy[1].classList.remove("popular-product-link");
+			popularProductBookmarks[1].classList.remove("popular-product-link");
+			popularProductBuy[2].classList.remove("popular-product-link");
+			popularProductBookmarks[2].classList.remove("popular-product-link");
+			popularProductBuy[3].classList.remove("popular-product-link");
+			popularProductBookmarks[3].classList.remove("popular-product-link");
+			popularProductImage[0].classList.add("popular-product-img-hide");
+			popularProductImage[1].classList.remove("popular-product-img-hide");
+			popularProductImage[2].classList.remove("popular-product-img-hide");
+			popularProductImage[3].classList.remove("popular-product-img-hide");
+		})
+
+		popularProduct[1].addEventListener("focus", function() {
+			popularProductBuy[1].classList.add("popular-product-link");
+			popularProductBookmarks[1].classList.add("popular-product-link");
+			popularProductBuy[0].classList.remove("popular-product-link");
+			popularProductBookmarks[0].classList.remove("popular-product-link");
+			popularProductBuy[2].classList.remove("popular-product-link");
+			popularProductBookmarks[2].classList.remove("popular-product-link");
+			popularProductBuy[3].classList.remove("popular-product-link");
+			popularProductBookmarks[3].classList.remove("popular-product-link");
+			popularProductImage[1].classList.add("popular-product-img-hide");
+			popularProductImage[0].classList.remove("popular-product-img-hide");
+			popularProductImage[2].classList.remove("popular-product-img-hide");
+			popularProductImage[3].classList.remove("popular-product-img-hide");
+		})
+
+		popularProduct[2].addEventListener("focus", function() {
+			popularProductBuy[2].classList.add("popular-product-link");
+			popularProductBookmarks[2].classList.add("popular-product-link");
+			popularProductBuy[1].classList.remove("popular-product-link");
+			popularProductBookmarks[1].classList.remove("popular-product-link");
+			popularProductBuy[0].classList.remove("popular-product-link");
+			popularProductBookmarks[0].classList.remove("popular-product-link");
+			popularProductBuy[3].classList.remove("popular-product-link");
+			popularProductBookmarks[3].classList.remove("popular-product-link");
+			popularProductImage[2].classList.add("popular-product-img-hide");
+			popularProductImage[1].classList.remove("popular-product-img-hide");
+			popularProductImage[0].classList.remove("popular-product-img-hide");
+			popularProductImage[3].classList.remove("popular-product-img-hide");
+		})
+
+		popularProduct[3].addEventListener("focus", function() {
+			popularProductBuy[3].classList.add("popular-product-link");
+			popularProductBookmarks[3].classList.add("popular-product-link");
+			popularProductBuy[1].classList.remove("popular-product-link");
+			popularProductBookmarks[1].classList.remove("popular-product-link");
+			popularProductBuy[2].classList.remove("popular-product-link");
+			popularProductBookmarks[2].classList.remove("popular-product-link");
+			popularProductBuy[0].classList.remove("popular-product-link");
+			popularProductBookmarks[0].classList.remove("popular-product-link");
+			popularProductImage[3].classList.add("popular-product-img-hide");
+			popularProductImage[1].classList.remove("popular-product-img-hide");
+			popularProductImage[2].classList.remove("popular-product-img-hide");
+			popularProductImage[0].classList.remove("popular-product-img-hide");
+		})
+
+		document.querySelector(".popular-product-title a").addEventListener("focus", function() {
+			popularProductBuy[0].classList.remove("popular-product-link");
+			popularProductBookmarks[0].classList.remove("popular-product-link");
+			popularProductBuy[1].classList.remove("popular-product-link");
+			popularProductBookmarks[1].classList.remove("popular-product-link");
+			popularProductBuy[2].classList.remove("popular-product-link");
+			popularProductBookmarks[2].classList.remove("popular-product-link");
+			popularProductBuy[0].classList.remove("popular-product-link");
+			popularProductBookmarks[0].classList.remove("popular-product-link");
+			popularProductImage[0].classList.remove("popular-product-img-hide");
+			popularProductImage[1].classList.remove("popular-product-img-hide");
+			popularProductImage[2].classList.remove("popular-product-img-hide");
+			popularProductImage[0].classList.remove("popular-product-img-hide");
+		})
+
+		document.querySelector(".popular-manufacturer a").addEventListener("focus", function() {
+			popularProductBuy[3].classList.remove("popular-product-link");
+			popularProductBookmarks[3].classList.remove("popular-product-link");
+			popularProductBuy[1].classList.remove("popular-product-link");
+			popularProductBookmarks[1].classList.remove("popular-product-link");
+			popularProductBuy[2].classList.remove("popular-product-link");
+			popularProductBookmarks[2].classList.remove("popular-product-link");
+			popularProductBuy[0].classList.remove("popular-product-link");
+			popularProductBookmarks[0].classList.remove("popular-product-link");
+			popularProductImage[3].classList.remove("popular-product-img-hide");
+			popularProductImage[1].classList.remove("popular-product-img-hide");
+			popularProductImage[2].classList.remove("popular-product-img-hide");
+			popularProductImage[0].classList.remove("popular-product-img-hide");
 		})
 
 		// Message popup
