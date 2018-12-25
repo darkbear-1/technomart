@@ -67,8 +67,8 @@
 				</div>
 					<a href="#" class="catalog-open-btn">Открыть каталог</a>
 					<div class="slider-radio-wrap">
-						<label><span class="slider-radio-label-next"></span><input id="slider-input-one" type="radio" name="slider-radio" checked><span class="radio-indificator" tabindex="0"><span class="radio-indificator-current radio-current-show"></span></span></label>
-						<label><span class="slider-radio-label-prev"></span><input id="slider-input-two" type="radio" name="slider-radio"><span class="radio-indificator" tabindex="0"><span class="radio-indificator-current"></span></span></label>
+						<label><span class="slider-radio-label-next"></span><input id="slider-input-one" type="radio" name="slider-radio" checked><span class="radio-indificator" tabindex="0"><span class="radio-indificator-current "></span></span></label>
+						<label><span class="slider-radio-label-prev"></span><input id="slider-input-two" type="radio" name="slider-radio"><span class="radio-indificator" tabindex="0"><span class="radio-indificator-current radio-current-show"></span></span></label>
 					</div>
 				<div class="slider-description slide-two">
 					<h3>Дрели</h3>
@@ -322,43 +322,43 @@
 		sliderRadioLabelPrev.addEventListener('click', function() {
 			radioIndificatorCurrent[1].classList.remove("radio-current-show");
 			radioIndificatorCurrent[0].classList.add("radio-current-show");
-			slideOne.style.display = "none";
-			slideTwo.style.display = "block";
+			slideTwo.style.display = "none";
+			slideOne.style.display = "block";
 		})
 
 		radioIndificator[0].addEventListener("click", function() {
 			radioIndificatorCurrent[1].classList.remove("radio-current-show");
 			radioIndificatorCurrent[0].classList.add("radio-current-show");
-			slideOne.style.display = "none";
-			slideTwo.style.display = "block";
+			slideTwo.style.display = "none";
+			slideOne.style.display = "block";
 		})
 
 		radioIndificator[0].addEventListener("focus", function() {
 			radioIndificatorCurrent[1].classList.remove("radio-current-show");
 			radioIndificatorCurrent[0].classList.add("radio-current-show");
-			slideOne.style.display = "none";
-			slideTwo.style.display = "block";
+			slideTwo.style.display = "none";
+			slideOne.style.display = "block";
 		})
 
 		sliderRadioLabelNext.addEventListener('click', function() {
 			radioIndificatorCurrent[0].classList.remove("radio-current-show");
 			radioIndificatorCurrent[1].classList.add("radio-current-show");
-			slideTwo.style.display = "none";
-			slideOne.style.display = "block";
+			slideOne.style.display = "none";
+			slideTwo.style.display = "block";
 		})
 
 		radioIndificator[1].addEventListener("click", function() {
 			radioIndificatorCurrent[0].classList.remove("radio-current-show");
 			radioIndificatorCurrent[1].classList.add("radio-current-show");
-			slideTwo.style.display = "none";
-			slideOne.style.display = "block";
+			slideOne.style.display = "none";
+			slideTwo.style.display = "block";
 		})
 
 		radioIndificator[1].addEventListener("focus", function() {
 			radioIndificatorCurrent[0].classList.remove("radio-current-show");
 			radioIndificatorCurrent[1].classList.add("radio-current-show");
-			slideTwo.style.display = "none";
-			slideOne.style.display = "block";
+			slideOne.style.display = "none";
+			slideTwo.style.display = "block";
 		})
 
 		// Service 
