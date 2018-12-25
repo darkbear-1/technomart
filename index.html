@@ -67,8 +67,8 @@
 				</div>
 					<a href="#" class="catalog-open-btn">Открыть каталог</a>
 					<div class="slider-radio-wrap">
-						<label for="slider-input-one" class="slider-radio-label-prev"><input id="slider-input-one" type="radio" name="slider-radio" checked><span class="radio-indificator" tabindex="0"></span></label>
-						<label for="slider-input-two" class="slider-radio-label-next"><input id="slider-input-two" type="radio" name="slider-radio"><span class="radio-indificator" tabindex="0"></span></label>
+						<label><span class="slider-radio-label-next"></span><input id="slider-input-one" type="radio" name="slider-radio" checked><span class="radio-indificator" tabindex="0"><span class="radio-indificator-current radio-current-show"></span></span></label>
+						<label><span class="slider-radio-label-prev"></span><input id="slider-input-two" type="radio" name="slider-radio"><span class="radio-indificator" tabindex="0"><span class="radio-indificator-current"></span></span></label>
 					</div>
 				<div class="slider-description slide-two">
 					<h3>Дрели</h3>
@@ -225,7 +225,7 @@
 			<h2>Контакты</h2>
 			<p>Вы можете забрать товар сами, <br>
 			заехав в наш офис:</p>
-		<div id="map"></div>
+		<a href="#" id="map"></a>
 			<a href="#" class="company-message">Заблудились? Напишите нам!</a>
 		</div>
 	</section>
@@ -286,15 +286,18 @@
 			</form>
 		<button class="write-us-close">Закрыть</button>
 	</div>
-	<div class="map-popap">
-		<img src="#" alt="Карта">
-		<button class="map-popap-close"></button>
+	<div class="map-popup-overlay"></div>
+	<div id="map-popup">
+		<button class="map-popup-close"></button>
 	</div>
-
 	<script src="https://api-maps.yandex.ru/2.1/?apikey=242d59b7-bde4-4a79-bc9e-0724a9df1858&lang=ru_RU" type="text/javascript">
     </script>
 	<script>
 		var sliderRadioWrap = document.querySelector(".slider-radio-wrap");
+		var radioIndificator = document.querySelectorAll(".radio-indificator");
+		var radioIndificatorCurrent = document.querySelectorAll(".radio-indificator-current");
+		var sliderRadioLabelNext = document.querySelector('.slider-radio-label-next');
+		var sliderRadioLabelPrev = document.querySelector('.slider-radio-label-prev');
 		var slideOne = document.querySelector(".slide-one");
 		var slideTwo = document.querySelector(".slide-two");
 		var sliderNext = document.querySelector(".slider-next");
@@ -310,16 +313,52 @@
 		var writeUsPopup = document.querySelector(".write-us-popup");
 		var writeUsClose = document.querySelector(".write-us-close");
 		var writeUsOverlay = document.querySelector(".write-us-overlay");
+		var map = document.querySelector("#map");
+		var mapPopup = document.querySelector("#map-popup");
+		var mapPopupClose = document.querySelector(".map-popup-close");
+		var mapPopupOverlay = document.querySelector(".map-popup-overlay");
 
-		// Slider 
-		sliderRadioWrap.addEventListener("click", function() {
-			if (document.querySelector("#slider-input-one:checked")) {
-				slideTwo.style.display = "none";
-				slideOne.style.display = "block";
-			} else {
-				slideOne.style.display = "none";
-				slideTwo.style.display = "block";
-			}
+		// Slider
+		sliderRadioLabelPrev.addEventListener('click', function() {
+			radioIndificatorCurrent[1].classList.remove("radio-current-show");
+			radioIndificatorCurrent[0].classList.add("radio-current-show");
+			slideOne.style.display = "none";
+			slideTwo.style.display = "block";
+		})
+
+		radioIndificator[0].addEventListener("click", function() {
+			radioIndificatorCurrent[1].classList.remove("radio-current-show");
+			radioIndificatorCurrent[0].classList.add("radio-current-show");
+			slideOne.style.display = "none";
+			slideTwo.style.display = "block";
+		})
+
+		radioIndificator[0].addEventListener("focus", function() {
+			radioIndificatorCurrent[1].classList.remove("radio-current-show");
+			radioIndificatorCurrent[0].classList.add("radio-current-show");
+			slideOne.style.display = "none";
+			slideTwo.style.display = "block";
+		})
+
+		sliderRadioLabelNext.addEventListener('click', function() {
+			radioIndificatorCurrent[0].classList.remove("radio-current-show");
+			radioIndificatorCurrent[1].classList.add("radio-current-show");
+			slideTwo.style.display = "none";
+			slideOne.style.display = "block";
+		})
+
+		radioIndificator[1].addEventListener("click", function() {
+			radioIndificatorCurrent[0].classList.remove("radio-current-show");
+			radioIndificatorCurrent[1].classList.add("radio-current-show");
+			slideTwo.style.display = "none";
+			slideOne.style.display = "block";
+		})
+
+		radioIndificator[1].addEventListener("focus", function() {
+			radioIndificatorCurrent[0].classList.remove("radio-current-show");
+			radioIndificatorCurrent[1].classList.add("radio-current-show");
+			slideTwo.style.display = "none";
+			slideOne.style.display = "block";
 		})
 
 		// Service 
@@ -352,6 +391,13 @@
 			writeUsOverlay.style.display='none';
 		})
 
+		window.addEventListener("keydown", function(e) {
+			if (e.keyCode == 27) {
+				writeUsPopup.style.display='none';
+				writeUsOverlay.style.display='none';
+			}
+		})
+
 		function hidePopup(e) {
 		    if(!e.target.matches('.write-us-popup, .write-us-popup *')) {
 				writeUsPopup.style.display='none';
@@ -359,7 +405,36 @@
 		    }
 		};
 
-		window.addEventListener("click", hidePopup);
+		writeUsOverlay.addEventListener("click", hidePopup);
+
+		// Map popup
+		map.addEventListener("click", function(e) {
+			e.preventDefault();
+			mapPopup.style.display='block';
+			mapPopupOverlay.style.display='block';
+		})
+
+		mapPopupClose.addEventListener("click", function(e) {
+			e.preventDefault();
+			mapPopup.style.display='none';
+			mapPopupOverlay.style.display='none';
+		})
+
+		window.addEventListener("keydown", function(e) {
+			if (e.keyCode == 27) {
+				mapPopup.style.display='none';
+				mapPopupOverlay.style.display='none';
+			}
+		})
+
+		function hideMapPopup(e) {
+		    if(!e.target.matches('#map-popup, #map-popup *')) {
+				mapPopup.style.display='none';
+				mapPopupOverlay.style.display='none';
+		    }
+		};
+
+		mapPopupOverlay.addEventListener("click", hideMapPopup);
 
 		// Yandex API
 		ymaps.ready(init);
@@ -368,7 +443,7 @@
 	            center: [59.93903,30.3233],
 	            zoom: 16,
 	            controls: [],
-	            behaviors: ['drag']
+	            behaviors: []
 	        },
 	        {
 	        	suppressMapOpenBlock: true
@@ -381,9 +456,29 @@
 	        {
 	        	preset: 'islands#redIcon'
 	        });
-
 	        myMap.geoObjects.add(placemark);
 
+
+
+	   		 // Yandex API map-popup
+	        var mapPopup = new ymaps.Map("map-popup", {
+	            center: [59.93938,30.3165],
+	            zoom: 16,
+	            controls: [],
+	            behaviors: ['drag']
+	        },
+	        {
+	        	suppressMapOpenBlock: true
+	        });
+
+	    var placemarkPopup = new ymaps.Placemark([59.93880,30.3228], {
+	        	hintContent: 'ул. Большая Конюшенная 19, Санкт-Петербург',
+	        	iconContent: '<div class="map-hint">Большая</br>конюшенная ул., 19</div>'
+	        },
+	        {
+	        	preset: 'islands#redIcon'
+	        });
+	        mapPopup.geoObjects.add(placemarkPopup);
 	    }
 	</script>
 </body>
