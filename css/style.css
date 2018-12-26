@@ -101,8 +101,8 @@ input[type="radio"].visually-hidden {
 
 .header-top-item:not(:last-child) a {
 	display: inline-block;
-	padding: 12px 31px;
-	padding-left: 45px;
+	padding: 12px 26px;
+    padding-left: 47px;
 	text-decoration: none;
 	color: #fff;
 }
@@ -193,7 +193,7 @@ input[type="radio"].visually-hidden {
 .header-top-item:nth-child(3) a {
 	background-image: url(../img/cart-icon.svg);
 	background-repeat: no-repeat;
-	background-position: 14px 12px;
+	background-position: 18px 12px;
 }
 
 .header-top-item:nth-child(3) a:hover,
@@ -208,7 +208,7 @@ input[type="radio"].visually-hidden {
 .order {
 	background-color: #63a63e;
 	display: inline-block;
-	padding: 12px 22px;
+	padding: 12px 21px;
 	text-decoration: none;
 	color: #fff;
 }
@@ -703,7 +703,7 @@ input[name="slider-radio"] {
 .popular-product-item {
 	width: 220px;
 	margin-right: 20px;
-	margin-top: 20px;
+	margin-top: 21px;
 	padding-bottom: 20px;
 	position: relative;
 	overflow: hidden;
@@ -1792,12 +1792,12 @@ input[name="slider-radio"] {
 
 .filter-form {
 	max-width: 220px;
+	margin-top: 20px;
 }
 
 .form-name {
 	padding: 0;
 	margin: 0;
-	margin-top: 20px;
 	padding: 10px 19px;
 	font-size: 13px;
 	line-height: 18px;
@@ -2046,7 +2046,9 @@ input[name="slider-radio"] {
 .sort-option-list {
 	padding: 0;
 	margin: 0;
+	margin-top: 20px;
 	padding: 10px 20px;
+	padding-right: 17px;
 	list-style: none;
 	display: flex;
 	background-color: #f7f3ec;
@@ -2056,11 +2058,12 @@ input[name="slider-radio"] {
 	font-family: "PT Sans", Arial, sans-serif;
 	font-size: 13px;
 	line-height: 18px;
+	font-weight: 400;
 	text-transform: uppercase;
 }
 
 .sort-item:first-child {
-	margin-right: 140px;
+	margin-right: 139px;
 }
 
 .sort-item:nth-child(2) {
@@ -2075,6 +2078,10 @@ input[name="slider-radio"] {
 	margin-right: 45px;
 }
 
+.sort-item:nth-child(5) {
+	margin-right: 20px;
+}
+
 .sort-item button {
 	padding: 0;
 	margin: 0;
@@ -2082,30 +2089,113 @@ input[name="slider-radio"] {
 	position: relative;
 	background-color: transparent;
 	text-transform: uppercase;
+	font-family: "PT Sans", Arial, sans-serif;
+	font-size: 13px;
+	line-height: 18px;
+	font-weight: 400;
 	color: #acaaa5;
 }
 
-.sort-item button:after {
+.sort-item-category:after {
 	content: '';
 	left: 0;
-	bottom:-2px;
+	bottom: 1px;
 	position: absolute;
 	height: 1px;
 	width: 100%;
 	background-image: repeating-linear-gradient(to right, red 0, red 1px, transparent 1px, transparent 2px);
-	
 }
 
-.sort-item .sort-up {
-	border-width: 10px;
-	border-style: solid;
-	border-color: transparent transparent #ee3643 transparent;
+.sort-item .sort-current,
+.sort-item .sort-current:after {
+	color: #ee3643;
+	background-image: none;
+}
+
+.sort-up {
+	width: 11px;
+	height: 10px;
+	background-image: url(../img/icon-up-dir.svg);
+	background-repeat: no-repeat;
+}
+
+.sort-down {
+	width: 11px;
+	height: 10px;
+	background-image: url(../img/icon-down-dir.svg);
+	background-repeat: no-repeat;
 }
 
 .catalog-category .popular-product-item {
 	margin-right: 20px;
 }
 
+.catalog-category .popular-product-item:nth-child(3n+3) .product-price {
+	margin-top: 39px;
+}
+
 .catalog-category  .popular-product-item:nth-child(3n+3) {
 	margin-right: 0;
+}
+
+.catalog-category .popular-product-item:nth-child(3):after,
+.catalog-category .popular-product-item:nth-child(5):after,
+.catalog-category .popular-product-item:nth-child(7):after {
+	content: 'new';
+	color: #fff;
+	display: inline-block;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	font-family: "PT Sans Narrow", Arial, sans-serif;
+	font-size: 16px;
+	line-height: 18px;
+	font-weight: 400;
+	text-align: center;
+	position: absolute;
+	top: 6px;
+	right: -24px;
+	width: 88px;
+	background-color: #ee3643;
+	transform: rotate(45deg);
+}
+
+.catalog-category .popular-product-item:last-child:after {
+	opacity: 0;
+}
+
+.paginator {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	display: flex;
+	margin-left: 240px;
+}
+
+.paginator-item {
+	margin-right: 9px;
+	margin-top: 55px;
+	margin-bottom: 50px;	
+}
+
+.paginator-item-btn {
+	border: 0;
+	background-color: transparent;
+	font-family: "PT Sans", Arial, sans-serif;
+	font-size: 13px;
+	line-height: 18px;
+	padding: 9px 15px;
+	border: 1px solid #e5e5e5;
+	border-radius: 4px;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.paginator-item:last-child .paginator-item-btn {
+	padding: 9px 31px;
+}
+
+.paginator-item-btn-current {
+	background-color: #ee3643;
+	border: 1px solid #ee3643;
+	color: #fff;
 }
