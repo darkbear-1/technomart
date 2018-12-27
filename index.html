@@ -291,6 +291,51 @@
 	</div>
 	<script src="https://api-maps.yandex.ru/2.1/?apikey=242d59b7-bde4-4a79-bc9e-0724a9df1858&lang=ru_RU" type="text/javascript">
     </script>
+    <script>
+    	// Yandex API
+	ymaps.ready(init);
+    function init(){   
+        var myMap = new ymaps.Map("map", {
+            center: [59.93903,30.3233],
+            zoom: 16,
+            controls: [],
+            behaviors: []
+        },
+        {
+        	suppressMapOpenBlock: true
+        });
+
+    var placemark = new ymaps.Placemark([59.93880,30.3228], {
+        	hintContent: 'ул. Большая Конюшенная 19, Санкт-Петербург',
+        	iconContent: '<div class="map-hint">Большая</br>конюшенная ул., 19</div>'
+        },
+        {
+        	preset: 'islands#redIcon'
+        });
+        myMap.geoObjects.add(placemark);
+
+   		// Yandex API map-popup
+        var mapPopup = new ymaps.Map("map-popup", {
+            center: [59.93938,30.3165],
+            zoom: 16,
+            controls: [],
+            behaviors: ['drag']
+        },
+        {
+        	suppressMapOpenBlock: true
+        });
+
+    var placemarkPopup = new ymaps.Placemark([59.93880,30.3228], {
+        	hintContent: 'ул. Большая Конюшенная 19, Санкт-Петербург',
+        	iconContent: '<div class="map-hint">Большая</br>конюшенная ул., 19</div>'
+        },
+        {
+        	preset: 'islands#redIcon'
+        });
+        mapPopup.geoObjects.add(placemarkPopup);
+    }
+
+    </script>
 	<script src="js/script.js"></script>
 </body>
 </html>
