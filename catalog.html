@@ -64,8 +64,8 @@
 				<div class="range-wrap">
 					<div id='id66' class="range">
 						<div id='id66b' class='range__between'></div>
-					    <button id='id661' class="range__button_1" onclick="event.preventDefault()"></button>
-					    <button id='id662' class="range__button_2" onclick="event.preventDefault()"></button>
+					    <button id='id661' class="range__button_1" onclick="event.preventDefault()" tabindex="-1"></button>
+					    <button id='id662' class="range__button_2" onclick="event.preventDefault()" tabindex="-1"></button>
 					</div>
 				</div>
 				    <input id='id66i1' class='range_inpt1' type='number' min='0' max='35000'>
@@ -174,213 +174,59 @@
 			<li class="paginator-item"><button class="paginator-item-btn">Следующая</button></li>
 		</ul>
 	</section>
-
-	<script>
-		setTimeout(init2slider('id66', 'id66b', 'id661', 'id662', 'id66i1', 'id66i2'), 0);
-
-function init2slider(idX, btwX, btn1X, btn2X, input1, input2) {
-    var slider = document.getElementById(idX);
-    var between = document.getElementById(btwX); 
-    var button1 = document.getElementById(btn1X);
-    var button2 = document.getElementById(btn2X);   
-    var inpt1 = document.getElementById(input1); 
-    var inpt2 = document.getElementById(input2); 
-  	
-            var min=inpt1.min;
-  					var max=inpt1.max;
-    
-    /*init*/
-    var sliderCoords = getCoords(slider);
-    button1.style.marginLeft = '0px';
-    button2.style.marginLeft = 140 + 'px';
-    between.style.width = (slider.offsetWidth-button1.offsetWidth) + 'px';
-    inpt1.value = 0;
-    inpt2.value = 30000;
-    
-    inpt1.onchange= function(evt)
-    {
-    	if (parseInt(inpt1.value) < min)
-    		inpt1.value = min;
-    	if (parseInt(inpt1.value) > max)
-    		inpt1.value = max;
-    	if (parseInt(inpt1.value) > parseInt(inpt2.value))
-      {
-      	var temp = inpt1.value;
-    		inpt1.value = inpt2.value;
-    		inpt2.value = temp;
-      }
-      
-      
-        var sliderCoords = getCoords(slider);
-        var per1 = parseInt(inpt1.value-min)*100/(max-min);
-        var per2 = parseInt(inpt2.value-min)*100/(max-min);
-        var left1 = per1*(slider.offsetWidth-button1.offsetWidth)/100;
-        var left2 = per2*(slider.offsetWidth-button1.offsetWidth)/100;
-        
-            button1.style.marginLeft = left1 + 'px'; 
-            button2.style.marginLeft = left2 + 'px';
-            
-            if (left1 > left2)
-              {
-                between.style.width = (left1-left2) + 'px';
-                between.style.marginLeft = left2 + 'px';
-              }
-            else
-              {
-                between.style.width = (left2-left1) + 'px';
-                between.style.marginLeft = left1 + 'px';  
-              }
-    }
-    inpt2.onchange= function(evt)
-    {
-    	if (parseInt(inpt2.value) < min)
-    		inpt2.value = min;
-    	if (parseInt(inpt2.value) > max)
-    		inpt2.value = max;
-    	if (parseInt(inpt1.value) > parseInt(inpt2.value))
-      {
-      	var temp = inpt1.value;
-    		inpt1.value = inpt2.value;
-    		inpt2.value = temp;
-      }
-      
-        var sliderCoords = getCoords(slider);
-        var per1 = parseInt(inpt1.value-min)*100/(max-min);
-        var per2 = parseInt(inpt2.value-min)*100/(max-min);
-        var left1 = per1*(slider.offsetWidth-button1.offsetWidth)/100;
-        var left2 = per2*(slider.offsetWidth-button1.offsetWidth)/100;
-        
-            button1.style.marginLeft = left1 + 'px'; 
-            button2.style.marginLeft = left2 + 'px';
-            
-            if (left1 > left2)
-              {
-                between.style.width = (left1-left2) + 'px';
-                between.style.marginLeft = left2 + 'px';
-              }
-            else
-              {
-                between.style.width = (left2-left1) + 'px';
-                between.style.marginLeft = left1 + 'px';  
-              }
-    }
-  
-    /*mouse*/
-    button1.onmousedown = function(evt) {       
-        var sliderCoords = getCoords(slider);
-        var betweenCoords = getCoords(between); 
-        var buttonCoords1 = getCoords(button1);
-        var buttonCoords2 = getCoords(button2);
-        var shiftX2 = evt.pageX - buttonCoords2.left; 
-        var shiftX1 = evt.pageX - buttonCoords1.left;
-      
-        document.onmousemove = function(evt) {
-            var left1 = evt.pageX - shiftX1 - sliderCoords.left;
-            var right1 = slider.offsetWidth - button1.offsetWidth;
-            if (left1 < 0) left1 = 0;
-            if (left1 > right1) left1 = right1;
-            button1.style.marginLeft = left1 + 'px';  
-            
-            
-    				shiftX2 = evt.pageX - buttonCoords2.left; 
-            var left2 = evt.pageX - shiftX2 - sliderCoords.left;
-            var right2 = slider.offsetWidth - button2.offsetWidth;
-            if (left2 < 0) left2 = 0;
-            if (left2 > right2) left2 = right2;            
-             
-                var per_min = 0;
-                var per_max = 0;
-            if (left1 > left2)
-              {
-                between.style.width = (left1-left2) + 'px';
-                between.style.marginLeft = left2 + 'px';
-                 
-                per_min = left2*100/(slider.offsetWidth-button1.offsetWidth);
-                per_max = left1*100/(slider.offsetWidth-button1.offsetWidth);
-              }
-            else
-              {
-                between.style.width = (left2-left1) + 'px';
-                between.style.marginLeft = left1 + 'px';                
-                
-                per_min = left1*100/(slider.offsetWidth-button1.offsetWidth);
-                per_max = left2*100/(slider.offsetWidth-button1.offsetWidth);
-              }
-                inpt1.value= (parseInt(min)+Math.round((max-min)*per_min/100));
-                inpt2.value= (parseInt(min)+Math.round((max-min)*per_max/100)); 
-        
-        };
-        document.onmouseup = function() {
-            document.onmousemove = document.onmouseup = null;
-        };
-        return false;
-    };
-    
-  button2.onmousedown = function(evt) {       
-        var sliderCoords = getCoords(slider);
-        var betweenCoords = getCoords(between); 
-        var buttonCoords1 = getCoords(button1);
-        var buttonCoords2 = getCoords(button2);
-        var shiftX2 = evt.pageX - buttonCoords2.left; 
-        var shiftX1 = evt.pageX - buttonCoords1.left;
-      
-        document.onmousemove = function(evt) {
-            var left2 = evt.pageX - shiftX2 - sliderCoords.left;
-            var right2 = slider.offsetWidth - button2.offsetWidth;
-            if (left2 < 0) left2 = 0;
-            if (left2 > right2) left2 = right2;
-            button2.style.marginLeft = left2 + 'px';                      
-          
-          
-            shiftX1 = evt.pageX - buttonCoords1.left; 
-            var left1 = evt.pageX - shiftX1 - sliderCoords.left;
-            var right1 = slider.offsetWidth - button1.offsetWidth;  
-            if (left1 < 0) left1 = 0;
-            if (left1 > right1) left1 = right1;                      
-             
-                var per_min = 0;
-                var per_max = 0;
-                
-            if (left1 > left2)
-              {
-                between.style.width = (left1-left2) + 'px';
-                between.style.marginLeft = left2 + 'px';
-                per_min = left2*100/(slider.offsetWidth-button1.offsetWidth);
-                per_max = left1*100/(slider.offsetWidth-button1.offsetWidth);
-              }
-            else
-              {
-                between.style.width = (left2-left1) + 'px';
-                between.style.marginLeft = left1 + 'px';
-                per_min = left1*100/(slider.offsetWidth-button1.offsetWidth);
-                per_max = left2*100/(slider.offsetWidth-button1.offsetWidth);
-              }
-                inpt1.value= (parseInt(min)+Math.round((max-min)*per_min/100));
-                inpt2.value= (parseInt(min)+Math.round((max-min)*per_max/100)); 
-            
-        };
-        document.onmouseup = function() {
-            document.onmousemove = document.onmouseup = null;
-        };
-        return false;
-    };
-    
-    button1.ondragstart = function() {
-        return false;
-    };
-    button2.ondragstart = function() {
-        return false;
-    };
-
-    function getCoords(elem) {
-        var box = elem.getBoundingClientRect();
-        return {
-            top: box.top + pageYOffset,
-            left: box.left + pageXOffset
-        };
-    }   
-   
-}
-	</script>
+	<section class="perforator-about">
+		<div class="conteiner">
+			<h2>Пара слов о перфораторах</h2>
+			<p>Перфоратор — универсальный строительный инструмент. Предназначен для сверления и долбления отверстий в кирпиче, бетоне и камне. <br>
+			Существуют электромеханические и пневматические перфораторы. Современные модели могут выполнять функции дрели, шуруповерта и отбойного молотка. В <br> ассортиментном ряду есть выбор «трехрежимников»: в одном устройстве будут совмещены отбойный молоток и ударная дрель.</p>
+		</div>
+	</section>
+	<footer class="footer-top">
+		<div class="conteiner">
+			<a href="#" class="footer-logo logo">Техномарт</a>
+			<ul class="footer-top-list">
+				<li class="footer-top-item"><a href="#">Компания</a></li>
+				<li class="footer-top-item"><a href="#">Новости</a></li>
+				<li class="footer-top-item"><a href="#">Каталог</a></li>
+				<li class="footer-top-item"><a href="#">Доставка</a></li>
+				<li class="footer-top-item"><a href="#">Контакты</a></li>
+			</ul>
+			<p class="company-adress">г. Санкт-Петербург, ул. Б. Конюшенная, д. 19/8 <br> 
+			+7 (812) 555-05-55</p>
+			<ul class="footer-bottom-list">
+				<li class="footer-bottom-item"><a href="#">Материалы</a></li>
+				<li class="footer-bottom-item"><a href="#">Техника</a></li>
+				<li class="footer-bottom-item"><a href="#">Инструменты</a></li>
+				<li class="footer-bottom-item"><a href="#">Спецпредложения</a></li>
+			</ul>
+		</div>
+	</footer>
+	<footer class="main-footer">
+		<div class="conteiner">
+			<p class="copyright">© 2010–2017 Компания «Техномарт» <br>
+			Все права защищены</p>
+			<ul class="social-list">
+				<li class="social-item">
+					<a class="vk" href="#">Вконтакте</a>
+				</li>
+				<li class="social-item">
+					<a class="fb" href="#">Фейсбук</a>
+				</li>
+				<li class="social-item">
+					<a class="inst" href="#">Инстаграм</a>
+				</li>
+			</ul>
+			<p class="feedback">Обратная связь:<a href="#">main@htmlacademy.ru</a></p>
+			<p class="developed">Разработано — <a href="#">htmlacademy.ru</a></p>
+		</div>
+	</footer>
+	<div class="overlay"></div>
+	<div class="cart-popup">
+		<h3>Товар добавлен в корзину!</h3>
+		<a href="#" class="cart-popup-order-buy">Оформить заказ</a>
+		<a href="#" class="continue-purchases">Оформить заказ</a>
+		<button class="cart-popup-close">Закрыть</button>
+	</div>
+	<script src="js/script.js"></script>
 </body>
 </html>
