@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width" />
 	<title>Technomart</title>
 	<link href="https://fonts.googleapis.com/css?family=Cuprum:400,400i,700|PT+Sans+Narrow|PT+Sans:400,700&amp;subset=cyrillic" rel="stylesheet">
+	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -169,15 +170,15 @@
 			<ul class="service-nav">
 				<li class="service-item">
 					<input type="radio" id="delivery-input" name='service-radio' checked="checked">
-					<label tabindex="0" class="delivery-label label-current" for="delivery-input">Доставка</label>
+					<label tabindex="0" id="delivery-label" class="service-nav-label label-current" for="delivery-input">Доставка</label>
 				</li>
 				<li class="service-item">
 					<input type="radio" id="warranty-input" name='service-radio'>
-					<label tabindex="0" class="warranty-label" for="warranty-input">Гарантия</label>
+					<label tabindex="0" id="warranty-label" class="service-nav-label" for="warranty-input">Гарантия</label>
 				</li>
 				<li class="service-item">
 					<input type="radio" id="credit-input" name='service-radio'>
-					<label tabindex="0" class="credit-label" for="credit-input">Кредит</label>
+					<label tabindex="0" id="credit-label" class="service-nav-label" for="credit-input">Кредит</label>
 				</li>
 			</ul>
 			<div class="delivery">

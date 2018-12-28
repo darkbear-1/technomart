@@ -583,6 +583,7 @@ input[name="slider-radio"] {
 
 .radio-indificator {
 	position: relative;
+	outline: 0;
 	z-index: 1;
 	display: inline-block;
 	width: 10px;
@@ -1858,7 +1859,7 @@ input[name="slider-radio"] {
 .range__button_1, .range__button_2 {
     position: absolute;
     top: 50%;
-
+	outline: 0;
     width: 20px;
     height: 20px;
 
@@ -1889,6 +1890,7 @@ input[name="slider-radio"] {
 	background-color: #f7f3ec;
   	margin-top: 9px;
   	width: 95px;
+  	-moz-appearance: textfield;
 }
 
 .range_inpt1::-webkit-outer-spin-button,
