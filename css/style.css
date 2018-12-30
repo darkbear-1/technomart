@@ -1498,8 +1498,11 @@ input[name="slider-radio"] {
 	height: 430px;
 	background-color: #f4f4f4;
 	box-shadow: 0 20px 60px 0 rgba(0,0,0,0.75);
+	transform: translateY(0);
+	animation-name: write-us-show;
+	animation-timing-function: ease-in-out;
+	animation-duration: 1s;
 }
-
 .overlay {
 	position: absolute;
 	display: none;
@@ -1827,10 +1830,9 @@ input[name="slider-radio"] {
 }
 
 .range-name {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: flex-end;
-	justify-content: space-between;
+	border: 0;
+	padding: 0;
+	margin: 0;
 	position: relative;
 	margin-top: 10px;
 	padding-bottom: 25px;
@@ -1891,6 +1893,10 @@ input[name="slider-radio"] {
   	margin-top: 9px;
   	width: 95px;
   	-moz-appearance: textfield;
+}
+
+.range_inpt2 {
+	float: right;
 }
 
 .range_inpt1::-webkit-outer-spin-button,
@@ -2347,6 +2353,10 @@ input[name="slider-radio"] {
 	justify-content: center;
 	background-color: #f4f4f4;
 	box-shadow: 0 20px 60px 0 rgba(0,0,0,0.75);
+	transform: translateY(0);
+	animation-name: write-us-show;
+	animation-timing-function: ease-in-out;
+	animation-duration: 1s;
 }
 
 .cart-popup h3 {
@@ -2418,4 +2428,29 @@ input[name="slider-radio"] {
 .cart-popup-order-buy:active {
 	background-color: #ba2732;
 	outline: 0;
+}
+
+/*Animation*/
+
+@keyframes write-us-show {
+	0% {transform: translateY(-500px);}
+	25% {transform: translateY(0);}
+	50% {transform: translateY(-20px);}
+	100% {transform: translateY(0);}
+}
+
+@keyframes write-us-shake {
+	0%,
+	100% {transform: translateX(0);}
+
+	10%,
+	30%,
+	50%,
+	70%,
+	90% {transform: translateX(10px);}
+
+	20%,
+	40%,
+	60%,
+	80% {transform: translateX(-10px);}
 }

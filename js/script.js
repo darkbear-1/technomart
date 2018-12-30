@@ -14,6 +14,20 @@
 	var paginatorItemBtn = document.querySelectorAll(".paginator-item-btn");
 	var sortItemCategory = document.querySelectorAll(".sort-item-category");
 	var sortIcon = document.querySelectorAll(".sort-icon");
+	var writeUsForm = document.querySelector(".write-us-form");
+	var user = document.querySelector("[name=user]");
+	var mail = document.querySelector("[name=mail]");
+	var text = document.querySelector("[name=text]");
+	var itStorageSupport = true;
+	var storageUser = '';
+	var storageMail = '';
+	
+	try {
+		var storageUser = localStorage.getItem("username");
+		var storageMail = localStorage.getItem("mail");
+	} catch (err) {
+		itStorageSupport = false
+	}
 
 	// Slider
 	window.addEventListener("click", function(e) {
@@ -151,9 +165,16 @@
 		}
 		// Message popup
 		if (e.target.getAttribute("class") == 'company-message') {
-		e.preventDefault();
-		writeUsPopup.style.display='block';
-		overlay.style.display='block';
+			e.preventDefault();
+			writeUsPopup.style.display='block';
+			overlay.style.display='block';
+			user.focus();
+			if (storageUser) {
+				user.value = storageUser;
+			}
+			if (storageMail) {
+				mail.value = storageMail;
+			}
 		}
 		if (e.target.getAttribute("class") == 'write-us-close') {
 		e.preventDefault();
@@ -215,6 +236,26 @@
 
 	overlay.addEventListener("click", hideMapPopup);
 
+	if (writeUsForm) {
+		writeUsForm.addEventListener("submit", function(e) {
+			if (!user.value || !mail.value || !text.value) {
+				e.preventDefault();
+				console.log(user.value);
+				writeUsPopup.style.animationName="";
+				writeUsPopup.style.animationDuration="0.75s";
+				writeUsPopup.offsetWidth;
+				writeUsPopup.style.animationName="write-us-shake";
+			} else {
+				if (itStorageSupport) {
+				localStorage.setItem("username", user.value);
+				}
+				if (itStorageSupport) {
+				localStorage.setItem("mail", mail.value);
+				}
+			}
+		})
+	}
+
     // Range Slider
 	setTimeout(init2slider('id66', 'id66b', 'id661', 'id662', 'id66i1', 'id66i2'), 0);
 
@@ -232,8 +273,8 @@
 	    /*init*/
 	    var sliderCoords = getCoords(slider);
 	    button1.style.marginLeft = '0px';
-	    button2.style.marginLeft = 140 + 'px';
-	    between.style.width = (slider.offsetWidth-button1.offsetWidth) + 'px';
+	    button2.style.marginLeft = 137.143 + 'px';
+	    between.style.width = 137.143 + 'px';
 	    inpt1.value = 0;
 	    inpt2.value = 30000;
 	    
@@ -420,3 +461,4 @@
 	        };
 	    }     
 }
+
